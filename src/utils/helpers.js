@@ -1,5 +1,4 @@
 import { config } from './configs';
-import { BUILDING_SIZES } from './constants';
 
 export const getRandomColor = () => {
 	var hue = Math.floor(Math.random() * 360);
@@ -130,8 +129,15 @@ export const prepareXRange = (drawHeight) => {
 
 export const prepareBuildings = () => {
 	const _buildings = [];
-	for (let index = 0; index < BUILDING_SIZES.length; index++) {
-		const { width, height } = BUILDING_SIZES[index];
+	const SIZES = [
+		...prepareNewBuildingSizes(20, 10, 20, 10, 50),
+		...prepareNewBuildingSizes(20, 10, 40, 20, 60),
+		...prepareNewBuildingSizes(20, 20, 30, 40, 150),
+		...prepareNewBuildingSizes(20, 10, 40, 140, 250),
+		...prepareNewBuildingSizes(10, 10, 40, 240, 320),
+	];
+	for (let index = 0; index < SIZES.length; index++) {
+		const { width, height } = SIZES[index];
 		_buildings.push(
 			createNewBuilding(index, width, height, prepareXRange(height))
 		);
