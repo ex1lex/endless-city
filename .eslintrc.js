@@ -2,6 +2,8 @@ module.exports = {
 	env: {
 		browser: true,
 		es2021: true,
+		node: true,
+		commonjs: true,
 	},
 	extends: 'eslint:recommended',
 	overrides: [
@@ -19,6 +21,7 @@ module.exports = {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
+	ignorePatterns: ['webpack.config.js'],
 	rules: {
 		'no-unused-vars': 'warn',
 	},
