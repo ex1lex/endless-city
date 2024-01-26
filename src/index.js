@@ -90,5 +90,11 @@ const drawSky = () => {
 	draw(backgroundCtx, x, y, 50, 50, color);
 };
 
-setInterval(drawBuilding, intervalTime);
-setInterval(drawSky, intervalTime);
+const init = () => {
+	drawSky();
+	drawBuilding();
+	setInterval(drawBuilding, intervalTime);
+	setInterval(drawSky, intervalTime);
+};
+
+init();
