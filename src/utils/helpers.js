@@ -105,7 +105,7 @@ export const prepareXRange = (drawHeight) => {
 				}
 			);
 			break;
-		case drawHeight >= 200:
+		case drawHeight >= 200 && drawHeight < 230:
 			ranges.push({
 				min: config.canvasWidth * 0.35,
 				max: config.canvasWidth - config.canvasWidth * 0.35,
