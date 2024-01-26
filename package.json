@@ -1,10 +1,13 @@
 {
-  "name": "canvas-education",
+  "name": "endless-city",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/ex1lex/endless-city#readme",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack serve --env DEV"
+    "start": "webpack serve --env DEV",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +16,7 @@
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "css-loader": "^6.9.1",
     "eslint": "^8.56.0",
+    "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.6.0",
     "style-loader": "^3.3.4",
     "webpack": "^5.89.0",
