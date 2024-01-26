@@ -1,32 +1,32 @@
 import './styles/index.css';
 import {
+	HEAVENLY_BODY_COORDINATES,
 	config,
 	getRandomNumber,
 	getRandomWindowColor,
+	getSkyColorByNumber,
 	prepareBuildings,
 } from './utils';
 
-const { intervalTime, isIntervalEnabled, canvasHeight, canvasWidth } = config;
+const { intervalTime, canvasHeight, canvasWidth } = config;
 
-const clearBtn = document.getElementById('clearBtn');
-const stopBtn = document.getElementById('stopBtn');
-const startBtn = document.getElementById('startBtn');
-const coordinates = document.getElementById('coordinates');
 const canvas = document.getElementById('canvas');
+const canvasBackground = document.getElementById('canvas__background');
 
 canvas.width = canvasWidth;
 canvas.height = canvasHeight;
-stopBtn.disabled = true;
+canvasBackground.width = canvasWidth;
+canvasBackground.height = canvasHeight;
 
-const ctx = canvas.getContext('2d');
+const mainCtx = canvas.getContext('2d');
+const backgroundCtx = canvasBackground.getContext('2d');
 
-let intervalId = null;
 const startY = canvasHeight;
 const buildings = prepareBuildings();
 
-const draw = (startX, startY, drawWidth, drawHeight, color) => {
+const draw = (ctx, startX, startY, drawWidth, drawHeight, color) => {
 	ctx.fillStyle = color;
-	ctx.fillRect(startX, startY - drawHeight, drawWidth, drawHeight);
+	ctx.fillRect(startX, startY, drawWidth, drawHeight);
 };
 
 const drawBuilding = () => {
@@ -51,7 +51,7 @@ const drawBuilding = () => {
 	const startX = getRandomNumber(minStartX, maxStartX);
 
 	// draw building
-	draw(startX, startY, width, height, color);
+	draw(mainCtx, startX, startY - height, width, height, color);
 
 	let startWindowY = startY - windowBottomPadding;
 
@@ -61,8 +61,9 @@ const drawBuilding = () => {
 	for (let index = 0; index < windowRowCount; index++) {
 		for (let i = 1; i <= windowCountInRow; i++) {
 			draw(
+				mainCtx,
 				startWindowX,
-				startWindowY,
+				startWindowY - windowHeight,
 				windowWidth,
 				windowHeight,
 				getRandomWindowColor()
@@ -74,27 +75,20 @@ const drawBuilding = () => {
 	}
 };
 
-clearBtn.addEventListener('click', () => {
-	ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-});
+const drawSky = () => {
+	const skyIndex = new Date().getHours();
 
-stopBtn.addEventListener('click', () => {
-	clearInterval(intervalId);
-	intervalId = null;
-	stopBtn.disabled = true;
-	startBtn.disabled = false;
-});
+	// clear canvas
+	backgroundCtx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-startBtn.addEventListener('click', () => {
-	if (isIntervalEnabled) {
-		stopBtn.disabled = false;
-		startBtn.disabled = true;
-		intervalId = setInterval(drawBuilding, intervalTime);
-	} else {
-		drawBuilding();
-	}
-});
+	// draw sky
+	const skyColor = getSkyColorByNumber(skyIndex);
+	draw(backgroundCtx, 0, 0, canvasWidth, canvasHeight, skyColor);
 
-canvas.addEventListener('mousemove', (event) => {
-	coordinates.innerHTML = `X: ${event.layerX} Y: ${event.layerY}`;
-});
+	// draw sunset or moon
+	const { x, y, color } = HEAVENLY_BODY_COORDINATES[skyIndex];
+	draw(backgroundCtx, x, y, 50, 50, color);
+};
+
+setInterval(drawBuilding, intervalTime);
+setInterval(drawSky, intervalTime);

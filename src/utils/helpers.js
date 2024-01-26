@@ -1,4 +1,5 @@
 import { config } from './configs';
+import { SKY_COLORS } from './constants';
 
 export const getRandomColor = () => {
 	var hue = Math.floor(Math.random() * 360);
@@ -161,4 +162,8 @@ export const prepareNewBuildingSizes = (
 		});
 	}
 	return newBuildings;
+};
+
+export const getSkyColorByNumber = (numberOfSky) => {
+	return SKY_COLORS[numberOfSky];
 };
