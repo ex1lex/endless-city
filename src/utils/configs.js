@@ -1,8 +1,7 @@
-const defaultIntervalTime = 1000 * 60 * 19;
+const defaultIntervalTime = 60000 * 7.5; // каждые 7.5 секунд
 
 export const config = {
-	intervalTime: process.env.ENV === 'DEV' ? 100 : defaultIntervalTime,
-	isIntervalEnabled: true,
+	intervalTime: process.env.DEV ? 100 : defaultIntervalTime,
 	canvasWidth: 600,
 	canvasHeight: 500,
 };
