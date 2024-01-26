@@ -1,363 +1,189 @@
-export const BUILDING_SIZES = [
-	{
-		width: 80,
-		height: 250,
-	},
-	{
-		width: 30,
-		height: 200,
-	},
-	{
-		width: 50,
-		height: 190,
-	},
-	{
-		width: 60,
-		height: 220,
-	},
-	{
-		width: 80,
-		height: 133,
-	},
-	{
-		width: 30,
-		height: 226,
-	},
-	{
-		width: 70,
-		height: 80,
-	},
-	{
-		width: 50,
-		height: 110,
-	},
-	{
-		width: 90,
-		height: 220,
-	},
-	{
-		width: 40,
-		height: 170,
-	},
-	{
-		width: 80,
-		height: 140,
-	},
-	{
-		width: 40,
-		height: 90,
-	},
-	{
-		width: 30,
-		height: 50,
-	},
-	{
-		width: 80,
-		height: 100,
-	},
-	{
-		width: 50,
-		height: 30,
-	},
-	{
-		width: 60,
-		height: 40,
-	},
-	{
-		width: 55,
-		height: 150,
-	},
-	{
-		width: 75,
-		height: 110,
-	},
-	{
-		width: 45,
-		height: 150,
-	},
-	{
-		width: 80,
-		height: 190,
-	},
-	{
-		width: 76,
-		height: 220,
-	},
-	{
-		width: 45,
-		height: 215,
-	},
-	{
-		width: 84,
-		height: 185,
-	},
-	{
-		width: 65,
-		height: 90,
-	},
-	{
-		width: 70,
-		height: 250,
-	},
-	{
-		width: 45,
-		height: 240,
-	},
-	{
-		width: 35,
-		height: 120,
-	},
-	{
-		width: 50,
-		height: 225,
-	},
-	{
-		width: 60,
-		height: 180,
-	},
-	{
-		width: 40,
-		height: 120,
-	},
-	{
-		width: 30,
-		height: 80,
-	},
-	{
-		width: 90,
-		height: 225,
-	},
-	{
-		width: 70,
-		height: 180,
-	},
-	{
-		width: 20,
-		height: 270,
-	},
-	{
-		width: 30,
-		height: 265,
-	},
-	{
-		width: 40,
-		height: 245,
-	},
-	{
-		width: 45,
-		height: 230,
-	},
-	{
-		width: 130,
-		height: 154,
-	},
-	{
-		width: 30,
-		height: 215,
-	},
-	{
-		width: 30,
-		height: 60,
-	},
-	{
-		width: 45,
-		height: 275,
-	},
-	{
-		width: 50,
-		height: 280,
-	},
-	{
-		width: 40,
-		height: 285,
-	},
-	{
-		width: 70,
-		height: 265,
-	},
-	{
-		width: 60,
-		height: 260,
-	},
-	{
-		width: 55,
-		height: 240,
-	},
-	{
-		width: 30,
-		height: 150,
-	},
-	{
-		width: 75,
-		height: 240,
-	},
-	{
-		width: 50,
-		height: 130,
-	},
-	{
-		width: 50,
-		height: 200,
-	},
-	{
-		width: 9,
-		height: 48,
-	},
-	{
-		width: 20,
-		height: 11,
-	},
-	{
-		width: 11,
-		height: 19,
-	},
-	{
-		width: 18,
-		height: 17,
-	},
-	{
-		width: 24,
-		height: 10,
-	},
-	{
-		width: 23,
-		height: 45,
-	},
-	{
-		width: 11,
-		height: 38,
-	},
-	{
-		width: 8,
-		height: 49,
-	},
-	{
-		width: 11,
-		height: 18,
-	},
-	{
-		width: 18,
-		height: 45,
-	},
-	{
-		width: 27,
-		height: 28,
-	},
-	{
-		width: 29,
-		height: 21,
-	},
-	{
-		width: 25,
-		height: 10,
-	},
-	{
-		width: 30,
-		height: 43,
-	},
-	{
-		width: 16,
-		height: 47,
-	},
-	{
-		width: 9,
-		height: 19,
-	},
-	{
-		width: 30,
-		height: 13,
-	},
-	{
-		width: 28,
-		height: 21,
-	},
-	{
-		width: 23,
-		height: 14,
-	},
-	{
-		width: 6,
-		height: 13,
-	},
-	{
-		width: 5,
-		height: 33,
-	},
-	{
-		width: 24,
-		height: 14,
-	},
-	{
-		width: 9,
-		height: 30,
-	},
-	{
-		width: 21,
-		height: 23,
-	},
-	{
-		width: 6,
-		height: 44,
-	},
-	{
-		width: 22,
-		height: 40,
-	},
-	{
-		width: 13,
-		height: 40,
-	},
-	{
-		width: 6,
-		height: 25,
-	},
-	{
-		width: 8,
-		height: 17,
-	},
-	{
-		width: 16,
-		height: 35,
-	},
+import { config } from './configs';
 
+const sunsetXRangeWidth = config.canvasWidth / 13;
+
+const _MOON_COORDINATES = [
 	{
-		width: 37,
-		height: 306,
+		hour: 20,
+		x: 0,
+		y: Math.floor(config.canvasHeight / 2.5),
+		color: 'white',
 	},
 	{
-		width: 38,
-		height: 303,
+		hour: 21,
+		x: sunsetXRangeWidth * 1 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 3.5),
+		color: 'white',
 	},
 	{
-		width: 59,
-		height: 303,
+		hour: 22,
+		x: sunsetXRangeWidth * 2 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4),
+		color: 'white',
 	},
 	{
-		width: 64,
-		height: 268,
+		hour: 23,
+		x: sunsetXRangeWidth * 3 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.3),
+		color: 'white',
 	},
 	{
-		width: 58,
-		height: 341,
+		hour: 0,
+		x: sunsetXRangeWidth * 4 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.5),
+		color: 'white',
 	},
 	{
-		width: 29,
-		height: 250,
+		hour: 1,
+		x: sunsetXRangeWidth * 5.5 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.7),
+		color: 'white',
 	},
 	{
-		width: 65,
-		height: 260,
+		hour: 2,
+		x: sunsetXRangeWidth * 6.5 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.7),
+		color: 'white',
 	},
 	{
-		width: 56,
-		height: 331,
+		hour: 3,
+		x: sunsetXRangeWidth * 8 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.5),
+		color: 'white',
 	},
 	{
-		width: 22,
-		height: 328,
+		hour: 4,
+		x: sunsetXRangeWidth * 9 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.3),
+		color: 'white',
 	},
 	{
-		width: 61,
-		height: 270,
+		hour: 5,
+		x: sunsetXRangeWidth * 10 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4),
+		color: 'white',
 	},
+	{
+		hour: 6,
+		x: sunsetXRangeWidth * 11 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 3.5),
+		color: 'white',
+	},
+	{
+		hour: 7,
+		x: sunsetXRangeWidth * 12,
+		y: Math.floor(config.canvasHeight / 2.5),
+		color: 'white',
+	},
+];
+
+const _SUNSET_COORDINATES = [
+	{
+		hour: 8,
+		x: 0,
+		y: Math.floor(config.canvasHeight / 2.5),
+		color: 'yellow',
+	},
+	{
+		hour: 9,
+		x: sunsetXRangeWidth * 1 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 3.5),
+		color: 'yellow',
+	},
+	{
+		hour: 10,
+		x: sunsetXRangeWidth * 2 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4),
+		color: 'yellow',
+	},
+	{
+		hour: 11,
+		x: sunsetXRangeWidth * 3 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.3),
+		color: 'yellow',
+	},
+	{
+		hour: 12,
+		x: sunsetXRangeWidth * 4 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.5),
+		color: 'yellow',
+	},
+	{
+		hour: 13,
+		x: sunsetXRangeWidth * 5.5 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.7),
+		color: 'yellow',
+	},
+	{
+		hour: 14,
+		x: sunsetXRangeWidth * 6.5 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.7),
+		color: 'yellow',
+	},
+	{
+		hour: 15,
+		x: sunsetXRangeWidth * 8 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.5),
+		color: 'yellow',
+	},
+	{
+		hour: 16,
+		x: sunsetXRangeWidth * 9 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4.3),
+		color: 'yellow',
+	},
+	{
+		hour: 17,
+		x: sunsetXRangeWidth * 10 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 4),
+		color: 'yellow',
+	},
+	{
+		hour: 18,
+		x: sunsetXRangeWidth * 11 - (sunsetXRangeWidth - 50) / 2,
+		y: Math.floor(config.canvasHeight / 3.5),
+		color: 'yellow',
+	},
+	{
+		hour: 19,
+		x: sunsetXRangeWidth * 12,
+		y: Math.floor(config.canvasHeight / 2.5),
+		color: 'yellow',
+	},
+];
+
+const _HEAVENLY_BODY_COORDINATES = [
+	..._SUNSET_COORDINATES,
+	..._MOON_COORDINATES,
+];
+
+export const HEAVENLY_BODY_COORDINATES = _HEAVENLY_BODY_COORDINATES.sort(
+	(firstItem, secondItem) => firstItem.hour - secondItem.hour
+);
+
+export const SKY_COLORS = [
+	'rgba(20, 0, 133, 1)',
+	'rgba(20, 0, 133, 1)',
+	'rgba(20, 0, 133, 1)',
+	'rgba(20, 0, 133, 1)',
+	'rgba(27, 0, 179, 1)',
+	'rgba(27, 0, 179, 1)',
+	'rgba(36, 123, 255, 1)',
+	'rgba(36, 123, 255, 1)',
+	'rgba(163, 200, 255, 1)',
+	'rgba(163, 200, 255, 1)',
+	'rgba(163, 200, 255, 1)',
+	'rgba(163, 200, 255, 1)',
+	'rgba(163, 200, 255, 1)',
+	'rgba(163, 200, 255, 1)',
+	'rgba(163, 200, 255, 1)',
+	'rgba(163, 200, 255, 1)',
+	'rgba(163, 200, 255, 1)',
+	'rgba(36, 123, 255, 1)',
+	'rgba(36, 123, 255, 1)',
+	'rgba(36, 123, 255, 1)',
+	'rgba(36, 123, 255, 1)',
+	'rgba(20, 0, 133, 1)',
+	'rgba(20, 0, 133, 1)',
+	'rgba(27, 0, 179, 1)',
 ];
